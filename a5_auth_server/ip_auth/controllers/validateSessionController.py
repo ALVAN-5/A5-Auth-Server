@@ -1,5 +1,5 @@
-from django.http import HttpResponse # type: ignore
-from django.utils.timezone import make_aware # type: ignore
+from django.http import HttpResponse  # type: ignore
+from django.utils.timezone import make_aware  # type: ignore
 import json
 from ..models import IPSession
 from datetime import datetime

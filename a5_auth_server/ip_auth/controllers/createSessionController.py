@@ -1,6 +1,6 @@
-from django.db.utils import IntegrityError # type: ignore
-from django.http import HttpResponse, HttpResponseServerError # type: ignore
-from django.utils.timezone import make_aware # type: ignore
+from django.db.utils import IntegrityError  # type: ignore
+from django.http import HttpResponse, HttpResponseServerError  # type: ignore
+from django.utils.timezone import make_aware  # type: ignore
 import datetime as dt
 import json
 import random

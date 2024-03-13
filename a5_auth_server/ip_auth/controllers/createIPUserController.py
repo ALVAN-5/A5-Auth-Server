@@ -1,5 +1,5 @@
-from django.db.utils import IntegrityError # type: ignore
-from django.http import HttpResponse # type: ignore
+from django.db.utils import IntegrityError  # type: ignore
+from django.http import HttpResponse  # type: ignore
 import json
 from ..models import IPUser
 from ..utils.generate_token import generateToken
