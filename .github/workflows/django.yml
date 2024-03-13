@@ -37,4 +37,4 @@ jobs:
         mypy a5_auth_server --explicit-package-bases
     - name: Run Tests
       run: |
-        python manage.py test
+        python a5_auth_server/manage.py test
