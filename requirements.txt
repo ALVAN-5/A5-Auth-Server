@@ -2,5 +2,4 @@ asgiref==3.7.2
 Django==5.0.3
 setuptools==69.1.1
 sqlparse==0.4.4
-martor
 gunicorn
