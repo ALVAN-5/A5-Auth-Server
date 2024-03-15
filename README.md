@@ -121,3 +121,63 @@ Status Code: 200
 ```
 
 <hr/><br/>
+
+#### `auth/ip/resetIPToken/` - POST
+- This endpoint takes in a clientIP and a home_group pair. It uses the provided data to reset the token on the matching IPUser, if one is found.
+
+| Body Parameter | Required | Description| Formating Requirements |
+|----------------|----------|------------|------------------------|
+|clientIP| &#9745;  |IP address of user to be identify the IP user to reset|IPv4 or IPv6 string|
+|home_group| &#9745;  |Extra data for security validation| String, 6-32 characters in length|
+
+
+##### Response
+| Key | Datatype | Description |
+|-|-|-|
+|ip_address| string | The IP address saved to the database|
+|token| string | The updated token used to create authenticated sessions from devices with different IP addresses, or used to authenticate same device if IP address might change|
+|home_group| string | The key, used to associate multiple saved IP addresses to the same home |
+
+<br/><b>
+Sample Response:
+</b><br/>
+Status Code: 200
+```JSON
+{
+    "ip_address": "192.168.1.113",
+    "token": "l8EF}R[0RQbg_O1(LP]b(H-s",
+    "home_group": "sample_home",
+    "already_existed": false
+}
+```
+
+<hr/><br/>
+
+#### `auth/ip/removeIPUser/` - POST
+- This endpoint removes an IPUser from the database. All associated sessions will be removed as well.
+
+| Body Parameter | Required | Description| Formating Requirements |
+|----------------|----------|------------|------------------------|
+|clientIP| &#9745;  |IP address of user to be identify the IP user to reset|IPv4 or IPv6 string|
+
+
+##### Response
+| Key | Datatype | Description |
+|-|-|-|
+|ip_address| string | The IP address saved to the database of the deleted IPUser|
+|token| string | The token used to create authenticated sessions from devices with different IP addresses of the deleted IPUser|
+|home_group| string | The key, used to associate multiple saved IP addresses to the same home of the deleted IPUser |
+
+<br/><b>
+Sample Response:
+</b><br/>
+Status Code: 200
+```JSON
+{
+    "ip_address": "192.168.1.113",
+    "token": "l8EF}R[0RQbg_O1(LP]b(H-s",
+    "home_group": "sample_home",
+}
+```
+
+<hr/><br/>
