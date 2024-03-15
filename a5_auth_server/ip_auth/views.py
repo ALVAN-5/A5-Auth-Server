@@ -7,6 +7,8 @@ from .validators.validate_home_group import validateHomeGroup
 from .controllers.createIPUserController import createIPUserController
 from .controllers.createSessionController import createSessionController
 from .controllers.validateSessionController import validateSessionController
+from .controllers.resetIPTokenController import resetIPTokenController
+from .controllers.removeIPUserController import removeIPUserController
 
 
 def createSession(request):
@@ -27,7 +29,12 @@ def createSession(request):
     '''
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
-    params = json.loads(request.body)
+
+    try:
+        params = json.loads(request.body)
+    except json.decoder.JSONDecodeError:
+        return HttpResponseBadRequest()
+
     try:
         ip = params['clientIP']
     except KeyError:
@@ -61,7 +68,12 @@ def createSessionFromToken(request):
 
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
-    params = json.loads(request.body)
+
+    try:
+        params = json.loads(request.body)
+    except json.decoder.JSONDecodeError:
+        return HttpResponseBadRequest()
+
     try:
         token = params['token']
     except KeyError:
@@ -93,7 +105,11 @@ def createIPUser(request):
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
 
-    params = json.loads(request.body)
+    try:
+        params = json.loads(request.body)
+    except json.decoder.JSONDecodeError:
+        return HttpResponseBadRequest()
+
     try:
         ip = params['clientIP']
         home_group = params['home_group']
@@ -109,3 +125,53 @@ def createIPUser(request):
         return HttpResponseBadRequest()
 
     return createIPUserController(ip, home_group)
+
+
+def resetIPToken(request):
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    try:
+        params = json.loads(request.body)
+    except json.decoder.JSONDecodeError:
+        return HttpResponseBadRequest()
+
+    try:
+        ip = params['clientIP']
+        home_group = params['home_group']
+    except KeyError:
+        return HttpResponseBadRequest()
+
+    try:
+        if not validateIPAddress(ip):
+            return HttpResponseBadRequest()
+        elif not validateHomeGroup(home_group):
+            return HttpResponseBadRequest()
+    except KeyError:
+        return HttpResponseBadRequest()
+    
+    return resetIPTokenController(ip, home_group)
+
+
+def removeIPUser(request):
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    try:
+        params = json.loads(request.body)
+    except json.decoder.JSONDecodeError:
+        return HttpResponseBadRequest()
+
+    try:
+        ip = params['clientIP']
+        print(params)
+    except KeyError:
+        return HttpResponseBadRequest()
+
+    try:
+        if not validateIPAddress(ip):
+            return HttpResponseBadRequest()
+    except KeyError:
+        return HttpResponseBadRequest()
+    
+    return removeIPUserController(ip)
