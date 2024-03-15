@@ -17,7 +17,4 @@ def removeIPUserController(ip):
     }
     
     ip_user.delete()
-    print('[]')
-    print(deleted_user)
-    print('[]')
     return HttpResponse(json.dumps(deleted_user))

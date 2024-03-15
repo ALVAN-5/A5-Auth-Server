@@ -1,6 +1,21 @@
 # A5-Auth-Server
 A server to create, store, and validate session tokens
 
+## Run With Docker
+
+### Server Container
+
+> `docker network create --subnet 192.168.2.0/24 al-net # This only has to be run once`
+
+> `docker build -t a5-auth-server:0.0.0.SNAPSHOT . --build-arg A5TPS_ENV=PROD --build-arg A5TPS_HOST_IP="192.168.2.2" --build-arg A5TPS_HOST_PORT=80`
+
+> `docker run --network=al-net --ip 192.168.2.3 -p 80:80 -p 5000:5000 a5-auth-server:0.0.0.SNAPSHOT`
+
+### Testing Container
+> `docker run -ti --network=al-net --ip 192.168.2.69 --rm ubuntu:20.04 /bin/bash`
+
+> `apt update && apt install lsb-core # To install standard ubuntu libraries`
+
 ## Endpoints
 
 ### IP Validation
