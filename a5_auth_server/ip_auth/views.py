@@ -164,7 +164,6 @@ def removeIPUser(request):
 
     try:
         ip = params['clientIP']
-        print(params)
     except KeyError:
         return HttpResponseBadRequest()
 
