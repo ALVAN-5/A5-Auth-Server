@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  server:
+    build: .
+    container_name: a5_auth_server
+    command: python -m gunicorn -c gunicorn_config.py wsgi
+    ports:
+      - 8019:8019
+    networks:
+      - al-net
+    volumes:
+      - auth_db_volume:/auth
+
+networks:
+  al-net:
+    external: true
+
+volumes:
+  auth_db_volume:
