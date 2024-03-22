@@ -191,8 +191,26 @@ Status Code: 200
 {
     "ip_address": "192.168.1.113",
     "token": "l8EF}R[0RQbg_O1(LP]b(H-s",
-    "home_group": "sample_home",
+    "home_group": "sample_home"
 }
 ```
 
 <hr/><br/>
+
+#### `health/` - GET
+- This endpoint just exists to check the health of the server.
+- If the server is alive, the following is returned:
+```JSON
+{
+    "health": "ok"
+}
+```
+- Otherwise, an error status code will return
+
+##### Parameters
+- None
+
+##### Response
+| Key | Datatype | Description |
+|-|-|-|
+|health| string | "ok" |
