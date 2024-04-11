@@ -6,6 +6,7 @@ services:
     container_name: a5_auth_server
     command: python -m gunicorn -c gunicorn_config.py wsgi
     ports:
+      - 80:80
       - 8019:8019
     networks:
       - al-net
