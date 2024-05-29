@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-4#^f)i^%o)0&3glxoshnvan-=ftmk%d)m661tb!cu^tj4(t-op
 DEBUG = True
 
 ALLOWED_HOSTS: list[str] = [
-    'auth-server'
+    'auth-server',
+    'auth-server:80'
 ]
 
 # Application definition
