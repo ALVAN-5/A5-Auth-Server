@@ -33,7 +33,17 @@ def createSession(request):
     try:
         params = json.loads(request.body)
     except json.decoder.JSONDecodeError:
-        return HttpResponseBadRequest()
+        try:
+            paramsString = request.body.decode('ascii')
+            params = {}
+            for paramSet in paramsString.split('&'):
+                if '=' not in paramSet:
+                    continue
+                pKey = paramSet.split('=')[0]
+                pVal = paramSet.split('=')[1]
+                params[pKey] = pVal
+        except json.decoder.JSONDecodeError:
+            return HttpResponseBadRequest()
 
     try:
         ip = params['clientIP']
@@ -72,7 +82,17 @@ def createSessionFromToken(request):
     try:
         params = json.loads(request.body)
     except json.decoder.JSONDecodeError:
-        return HttpResponseBadRequest()
+        try:
+            paramsString = request.body.decode('ascii')
+            params = {}
+            for paramSet in paramsString.split('&'):
+                if '=' not in paramSet:
+                    continue
+                pKey = paramSet.split('=')[0]
+                pVal = paramSet.split('=')[1]
+                params[pKey] = pVal
+        except json.decoder.JSONDecodeError:
+            return HttpResponseBadRequest()
 
     try:
         token = params['token']
@@ -144,7 +164,17 @@ def resetIPToken(request):
     try:
         params = json.loads(request.body)
     except json.decoder.JSONDecodeError:
-        return HttpResponseBadRequest()
+        try:
+            paramsString = request.body.decode('ascii')
+            params = {}
+            for paramSet in paramsString.split('&'):
+                if '=' not in paramSet:
+                    continue
+                pKey = paramSet.split('=')[0]
+                pVal = paramSet.split('=')[1]
+                params[pKey] = pVal
+        except json.decoder.JSONDecodeError:
+            return HttpResponseBadRequest()
 
     try:
         ip = params['clientIP']
@@ -170,7 +200,17 @@ def removeIPUser(request):
     try:
         params = json.loads(request.body)
     except json.decoder.JSONDecodeError:
-        return HttpResponseBadRequest()
+        try:
+            paramsString = request.body.decode('ascii')
+            params = {}
+            for paramSet in paramsString.split('&'):
+                if '=' not in paramSet:
+                    continue
+                pKey = paramSet.split('=')[0]
+                pVal = paramSet.split('=')[1]
+                params[pKey] = pVal
+        except json.decoder.JSONDecodeError:
+            return HttpResponseBadRequest()
 
     try:
         ip = params['clientIP']
