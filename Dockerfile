@@ -21,6 +21,8 @@ RUN pip install -r requirements.txt
 # ENV A5TPS_HOST_PORT=${A5TPS_HOST_PORT}
 WORKDIR /app/a5_auth_server
 
+RUN python manage.py migrate
+
 EXPOSE 8019
 
 CMD ["python", "-m", "gunicorn", "-c", "gunicorn_config.py", "wsgi"]
