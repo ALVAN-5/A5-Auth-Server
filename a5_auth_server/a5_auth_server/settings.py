@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS: list[str] = [
     'auth-server',
-    'auth-server:80'
+    'auth-server:80',
+    '192.168.2.3',
+    '192.168.2.3:80'
 ]
 
 # Application definition
